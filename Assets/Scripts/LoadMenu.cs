@@ -15,6 +15,7 @@ public class LoadMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Load and create the different atom previews for the menu
         for (int i = 0; i < atoms.Count; i++)
         {
             atom = GameObject.Instantiate(atoms[i]);
@@ -24,12 +25,13 @@ public class LoadMenu : MonoBehaviour
             float posY = zOrigin + i * previewSeparation;
             atom.transform.localPosition = new Vector3(-0.03f, posY, 0);
             atom.transform.localEulerAngles = Vector3.zero;
-            SetInteractionButton(i);
+            SetInteractionBehaviours(i);
             //atom.transform.localScale = new Vector3(50, 50, 50);
         }
     }
 
-    private void SetInteractionButton(int index)
+    //Sets interaction behaviours to the previews
+    private void SetInteractionBehaviours(int index)
     {
         atom.AddComponent<InteractionButton>();
         atom.GetComponent<InteractionButton>().manager = interactionManager;
